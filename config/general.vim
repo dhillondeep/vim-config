@@ -193,29 +193,30 @@ endif
 " }}}
 " Editor UI {{{
 " --------------------
-set lazyredraw          " Don't redraw while executing macros (good performance config)
-set showmode            " Show mode in cmd window
-set shortmess=aoOTI     " Shorten messages and don't show intro
-set scrolloff=2         " Keep at least 2 lines above/below
-set sidescrolloff=5     " Keep at least 5 lines left/right
-set number              " show line numbers
-set noruler             " Disable default status ruler
-set list                " Show hidden characters
+set lazyredraw              " Don't redraw while executing macros (good performance config)
+set showmode                " Show mode in cmd window
+set shortmess=aoOTI         " Shorten messages and don't show intro
+set scrolloff=2             " Keep at least 2 lines above/below
+set sidescrolloff=5         " Keep at least 5 lines left/right
+set number                  " show line numbers
+set number relativenumber   " set relative number
+set noruler                 " Disable default status ruler
+set list                    " Show hidden characters
 
-set showtabline=2       " Always show the tabs line
-set winwidth=30         " Minimum width for active window
-set winminwidth=10      " Minimum width for inactive windows
-set winminheight=1      " Minimum height for inactive window
-set pumheight=15        " Pop-up menu's line height
-set helpheight=12       " Minimum help window height
-set previewheight=12    " Completion preview height
+set showtabline=2           " Always show the tabs line
+set winwidth=30             " Minimum width for active window
+set winminwidth=10          " Minimum width for inactive windows
+set winminheight=1          " Minimum height for inactive window
+set pumheight=15            " Pop-up menu's line height
+set helpheight=12           " Minimum help window height
+set previewheight=12        " Completion preview height
 
-set showcmd             " Show command in status line
-set cmdheight=1         " Height of the command line
-set cmdwinheight=5      " Command-line lines
-set noequalalways       " Don't resize windows on split or close
-set laststatus=2        " Always show a status line
-set colorcolumn=+0      " Column highlight at textwidth's max character-limit
+set showcmd                 " Show command in status line
+set cmdheight=1             " Height of the command line
+set cmdwinheight=5          " Command-line lines
+set noequalalways           " Don't resize windows on split or close
+set laststatus=2            " Always show a status line
+set colorcolumn=+0          " Column highlight at textwidth's max character-limit
 set display=lastline
 
 " UI Symbols
