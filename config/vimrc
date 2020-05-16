@@ -55,10 +55,10 @@ call s:source_file('config/init.vim')
 "call s:source_file('config/plugins/all.vim')
 
 " Initialize configurations
-"call s:source_file('config/general.vim')
+call s:source_file('config/general.vim')
 "call s:source_file('config/filetype.vim')
 "call s:source_file('config/mappings.vim')
-"call s:source_file('config/theme.vim')
+call s:source_file('config/theme.vim')
 
 " Load user custom configurations
 if filereadable($VIM_PATH . '/config/local.vim')

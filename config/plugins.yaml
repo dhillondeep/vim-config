@@ -1,0 +1,22 @@
+# Startup
+# -------
+- repo: Shougo/dein.vim
+- repo: itchyny/vim-gitbranch
+- repo: justinmk/vim-gtfo
+- { repo: rafi/awesome-vim-colorschemes, merged: 0 }
+- repo: sheerun/vim-polyglot
+
+- repo: christoomey/vim-tmux-navigator
+  if: "! (has('win32') || has('win64'))"
+
+# Lazy Loading 
+# ------------
+
+# Commands
+# --------
+- repo: Shougo/defx.nvim
+  on_cmd: Defx
+  hook_source: source $VIM_PATH/config/plugins/defx.vim
+
+- { repo: kristijanhusak/defx-git, on_source: defx.nvim }
+- { repo: kristijanhusak/defx-icons, on_source: defx.nvim }
