@@ -1,10 +1,14 @@
 # Startup
 # -------
+- { repo: rafi/awesome-vim-colorschemes, merged: 0 }
+
 - repo: Shougo/dein.vim
 - repo: itchyny/vim-gitbranch
 - repo: justinmk/vim-gtfo
-- { repo: rafi/awesome-vim-colorschemes, merged: 0 }
-- repo: sheerun/vim-polyglot
+- repo: jiangmiao/auto-pairs
+  hook_add: |
+    let g:AutoPairsShortcutToggle = "<leader>pt"
+    let g:AutoPairsFlyMode = 1
 
 - repo: christoomey/vim-tmux-navigator
   if: "! (has('win32') || has('win64'))"
@@ -12,11 +16,165 @@
 # Lazy Loading 
 # ------------
 
+# Languages
+# ---------
+- repo: sheerun/vim-polyglot
+
+- { repo: vim-ruby/vim-ruby, on_ft: ruby }
+- { repo: tpope/vim-git, on_ft: [ gitcommit, gitrebase, gitconfig ]}
+- { repo: ekalinin/Dockerfile.vim, on_ft: [ Dockerfile, docker-compose ]}
+- { repo: elzr/vim-json, on_ft: json }
+- { repo: tmux-plugins/vim-tmux, on_ft: tmux }
+
+# Markdown related
+- repo: plasticboy/vim-markdown
+  on_ft: markdown
+  hook_add: |
+    let g:vim_markdown_frontmatter = 1
+    let g:vim_markdown_strikethrough = 1
+    let g:vim_markdown_folding_level = 6
+    let g:vim_markdown_override_foldtext = 1
+    let g:vim_markdown_folding_style_pythonic = 1
+    let g:vim_markdown_conceal = 0
+    let g:vim_markdown_conceal_code_blocks = 0
+    let g:vim_markdown_edit_url_in = 'vsplit'
+    let g:vim_markdown_auto_insert_bullets = 1
+    let g:vim_markdown_new_list_item_indent = 0
+    let g:vim_markdown_toc_autofit = 0
+    let g:vim_markdown_fenced_languages = [
+      \ 'c++=cpp',
+      \ 'viml=vim',
+      \ 'bash=sh',
+      \ 'ini=dosini',
+      \ 'js=javascript',
+      \ 'json=javascript',
+      \ 'jsx=javascriptreact',
+      \ 'tsx=typescriptreact',
+      \ 'docker=Dockerfile',
+      \ 'makefile=make',
+      \ 'py=python'
+      \ ]
+
+# Golang
+- repo: fatih/vim-go
+  on_ft: [ go, gomod ]
+  hook_add: |
+    let g:go_def_mapping_enabled = 0
+    let g:go_code_completion_enabled = 0
+    let g:go_fmt_command = "goimports"
+    let g:go_template_autocreate = 0
+    let g:go_decls_mode = "fzf"
+    let g:go_echo_command_info = 0
+    let g:go_doc_keywordprg_enabled = 0
+    let g:go_mod_fmt_autosave = 0
+    let g:go_highlight_array_whitespace_error = 0
+    let g:go_highlight_chan_whitespace_error = 0
+    let g:go_highlight_space_tab_error = 0
+    let g:go_highlight_trailing_whitespace_error = 0
+    let g:go_highlight_extra_types = 1
+    let g:go_highlight_build_constraints = 1
+    let g:go_highlight_extra_types = 1
+    let g:go_highlight_fields = 1
+    let g:go_highlight_format_strings = 1
+    let g:go_highlight_functions = 1
+    let g:go_highlight_function_calls = 1
+    let g:go_highlight_function_parameters = 1
+    let g:go_highlight_types = 1
+    let g:go_highlight_generate_tags = 1
+    let g:go_highlight_operators = 1
+
 # Commands
 # --------
 - repo: Shougo/defx.nvim
   on_cmd: Defx
   hook_source: source $VIM_PATH/config/plugins/defx.vim
 
+- repo: liuchengxu/vista.vim
+  on_cmd: Vista
+  hook_add: |
+    let g:vista_default_executive = 'coc'
+    let g:vista_fzf_preview = ['right:50%']
+    let g:vista_executive_for = {
+      \ 'vimwiki': 'markdown',
+      \ 'pandoc': 'markdown',
+      \ 'markdown': 'toc',
+      \ }
+
 - { repo: kristijanhusak/defx-git, on_source: defx.nvim }
-- { repo: kristijanhusak/defx-icons, on_source: defx.nvim }
+- { repo: dstein64/vim-startuptime, on_cmd: StartupTime }
+
+- repo: preservim/nerdcommenter
+  on_map: [ '<Leader>cc', '<leader>cn', '<leader>c<space>', '<leader>cm', '<leader>ci', '<leader>cs', 
+            '<leader>cy', '<leader>c$', '<leader>cA', '<leader>ca', '<leader>cl', '<leader>cb', '<leader>cu' ]
+
+- repo: junegunn/fzf
+  merged: 0
+  on_cmd: FZF
+  type__depth: 1
+  hook_source: |
+    let g:fzf_layout = { 'down': '~25%' }
+
+- repo: junegunn/fzf.vim
+  depends: fzf
+  merged: 0
+  on_cmd: [ Files, Buffers, History, BLines, Colors, Rg, Rgrep ]
+  on_func: [ 'fzf#vim#with_preview', 'fzf#run', 'vista#finder#fzf#Run', 'fzf#vim#grep' ]
+  hook_source: source $VIM_PATH/config/plugins/fzf.vim
+
+# Inteface
+# --------
+- { repo: hotwatermorning/auto-git-diff, on_ft: gitrebase }
+
+- repo: machakann/vim-highlightedyank
+  on_event: TextYankPost
+  hook_source: let g:highlightedyank_highlight_duration = 200
+
+- repo: norcalli/nvim-colorizer.lua
+  if: has('nvim-0.4')
+  on_event: FileType
+  hook_source: luafile $VIM_PATH/config/plugins/colorizer.lua
+
+- repo: airblade/vim-gitgutter
+  on_event: FileType
+  hook_add: |
+    let g:gitgutter_map_keys = 0
+    let g:gitgutter_sign_added = '▎'
+    let g:gitgutter_sign_modified = '▎'
+    let g:gitgutter_sign_removed = '▍'
+    let g:gitgutter_sign_removed_first_line = '▘'
+    let g:gitgutter_sign_modified_removed = '▍'
+    let g:gitgutter_preview_win_floating = 1
+    let g:gitgutter_sign_allow_clobber = 0
+    let g:gitgutter_sign_priority = 0
+    let g:gitgutter_override_sign_column_highlight = 0
+
+- repo: kshenoy/vim-signature
+  depends: vim-gitgutter
+  on_event: FileType
+  hook_add: |
+    let g:SignatureForceRemoveGlobal = 0
+    let g:SignatureUnconditionallyRecycleMarks = 1
+    let g:SignatureErrorIfNoAvailableMarks = 0
+    let g:SignaturePurgeConfirmation = 0
+    let g:SignatureMarkTextHLDynamic = 1
+    let g:SignatureMarkerTextHLDynamic = 1
+    let g:SignatureIncludeMarkers = repeat('⚐', 10)
+    autocmd user_events User GitGutter call signature#sign#Refresh()
+
+# LSP
+# ----------
+- repo: neoclide/coc.nvim
+  merged: 0
+  rev: release
+  hook_source: source $VIM_PATH/config/plugins/coc.vim
+
+- repo: 'antoinemadec/coc-fzf'
+
+# Navigation
+# ----------
+- repo: justinmk/vim-sneak
+  on_map: {
+    'n': [ 'S', 's' ]
+  } 
+  hook_add: |
+    let g:sneak#label = 1

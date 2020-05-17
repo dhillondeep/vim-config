@@ -52,7 +52,7 @@ endif
 
 " Load main config files and pluggin manager
 call s:source_file('config/init.vim')
-"call s:source_file('config/plugins/all.vim')
+call s:source_file('config/plugins/all.vim')
 
 " Initialize configurations
 call s:source_file('config/general.vim')
@@ -63,6 +63,15 @@ call s:source_file('config/theme.vim')
 " Load user custom configurations
 if filereadable($VIM_PATH . '/config/local.vim')
 	call s:source_file('config/local.vim')
+endif
+
+" dim inactive window (neovim)
+if has('nvim')
+    if exists('$TMUX')
+        hi ActiveWindow ctermbg=None ctermfg=None guibg=#21242b
+        hi InactiveWindow ctermbg=darkgray ctermfg=gray guibg=#282c34
+        set winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
+    endif
 endif
 
 set secure

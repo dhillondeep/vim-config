@@ -5,8 +5,8 @@
 set mouse=nv                 " Disable mouse in command-line mode
 set modeline                 " automatically setting options from modelines
 set report=0                 " Don't report on line changes
-set errorbells               " Trigger bell on error
-set visualbell               " Use visual bell instead of beeping
+set noerrorbells             " Use no error bell
+set novisualbell             " Use no visual bell
 set hidden                   " hide buffers when abandoned instead of unload
 set fileformats=unix,dos,mac " Use Unix as the standard file type
 set magic                    " For regular expressions turn magic on
@@ -18,7 +18,7 @@ set formatoptions+=1         " Don't break lines after a one-letter word
 set formatoptions-=t         " Don't auto-wrap text
 set formatoptions-=o         " Disable comment-continuation (normal 'o'/'O')
 if has('patch-7.3.541')
-	set formatoptions+=j       " Remove comment leader when joining lines
+	set formatoptions+=j     " Remove comment leader when joining lines
 endif
 
 if has('vim_starting')
@@ -29,6 +29,12 @@ endif
 " What to save for views and sessions:
 set viewoptions=folds,cursor,curdir,slash,unix
 set sessionoptions=curdir,help,tabpages,winsize
+
+" Start from the same line when left
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal! g'\"" | endif
+endif
 
 " }}}
 " Wildmenu {{{
@@ -115,7 +121,7 @@ augroup END
 " }}}
 " Tabs and Indents {{{
 " ----------------
-set textwidth=80      " Text width maximum chars before wrapping 
+set textwidth=120     " Text width maximum chars before wrapping 
 set expandtab         " Expand tabs into spaces
 set smarttab          " Tab insert blanks according to 'shiftwidth'
 set shiftwidth=4      " Number of spaces to use in auto(indent)
@@ -194,7 +200,7 @@ endif
 " Editor UI {{{
 " --------------------
 set lazyredraw              " Don't redraw while executing macros (good performance config)
-set showmode                " Show mode in cmd window
+set noshowmode              " Show mode in cmd window
 set shortmess=aoOTI         " Shorten messages and don't show intro
 set scrolloff=2             " Keep at least 2 lines above/below
 set sidescrolloff=5         " Keep at least 5 lines left/right
@@ -214,10 +220,15 @@ set previewheight=12        " Completion preview height
 set showcmd                 " Show command in status line
 set cmdheight=1             " Height of the command line
 set cmdwinheight=5          " Command-line lines
-set noequalalways           " Don't resize windows on split or close
 set laststatus=2            " Always show a status line
 set colorcolumn=+0          " Column highlight at textwidth's max character-limit
 set display=lastline
+
+if has('folding') && has('vim_starting')
+	set foldenable
+	set foldmethod=indent
+	set foldlevelstart=99
+endif
 
 " UI Symbols
 " icons:  ▏│ ¦ ╎ ┆ ⋮ ⦙ ┊ 
@@ -255,5 +266,13 @@ if &termguicolors
 	endif
 endif
 
-" }}}
+" dim inactive window (neovim)
+if has('nvim')
+    if exists('$TMUX')
+        hi ActiveWindow ctermbg=None ctermfg=None guibg=#21242b
+        hi InactiveWindow ctermbg=darkgray ctermfg=gray guibg=#282c34
+        set winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
+    endif
+endif
 
+" }}}

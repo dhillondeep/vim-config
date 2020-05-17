@@ -141,6 +141,7 @@ function! s:use_dein()
 
 	" Initialize dein.vim (package manager)
 	if dein#load_state(l:cache_path)
+		echo l:cache_path
 		let l:rc = s:parse_config_files()
 		if empty(l:rc)
 			call s:error('Empty plugin list')
