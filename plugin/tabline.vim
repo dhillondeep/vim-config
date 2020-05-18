@@ -4,7 +4,7 @@
 function! Tabline()
 	" Active project name
 	let s:tabline =
-		\ '%#TabLineAlt# %{"  " . badge#project()} %#TabLineAltShade#|'
+		\ '%#TabLineAlt# %{" " . badge#project()} %#TabLineAltShade#|'
 
 	" Iterate through all tabs and collect labels
 	let l:current = tabpagenr()

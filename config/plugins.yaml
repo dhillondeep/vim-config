@@ -7,7 +7,7 @@
 - repo: justinmk/vim-gtfo
 - repo: jiangmiao/auto-pairs
   hook_add: |
-    let g:AutoPairsShortcutToggle = "<leader>pt"
+    let g:AutoPairsShortcutToggle = "<localleader>pt"
     let g:AutoPairsFlyMode = 1
 
 - repo: christoomey/vim-tmux-navigator
