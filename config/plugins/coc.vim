@@ -1,10 +1,6 @@
 " TextEdit might fail if hidden is not set.
 set hidden
 
-" Some servers have issues with backup files, see #649.
-set nobackup
-set nowritebackup
-
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
 set updatetime=300
@@ -90,12 +86,11 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Mappings using CoCList:
-nnoremap <silent> <space>a  :<C-u>CocFzfList diagnostics --current-buf<cr>
-nnoremap <silent> <space>a  :<C-u>CocFzfList diagnostics<cr>
-nnoremap <silent> <space>e  :<C-u>CocFzfList extensions<cr>
-nnoremap <silent> <space>c  :<C-u>CocFzfList commands<cr>
-nnoremap <silent> <space>o  :<C-u>CocFzfList outline<cr>
-nnoremap <silent> <space>s  :<C-u>CocFzfList symbols<cr>
+nnoremap <silent> <localleader>d  :<C-u>CocFzfList diagnostics --current-buf<cr>
+nnoremap <silent> <localleader>D  :<C-u>CocFzfList diagnostics<cr>
+nnoremap <silent> <localleader>c  :<C-u>CocFzfList commands<cr>
+nnoremap <silent> <localleader>o  :<C-u>CocFzfList outline<cr>
+nnoremap <silent> <localleader>s  :<C-u>CocFzfList symbols<cr>
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :
@@ -109,3 +104,8 @@ function! s:check_back_space() abort
 endfunction
 
 let g:coc_snippet_next = '<tab>'
+
+" highlights
+hi! link CocErrorSign WarningMsg
+hi! link CocWarningSign Number
+hi! link CocInfoSign Type

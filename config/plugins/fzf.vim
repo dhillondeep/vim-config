@@ -1,10 +1,10 @@
 " ripgrep settings
-let rg_fmt = 'rg --column --line-number --no-heading --color=always --fixed-strings --ignore-case --hidden --follow '
+let s:rg_fmt = 'rg --column --line-number --no-heading --color=always --fixed-strings --ignore-case --hidden --follow '
 
 " uses fzf and ripgrep to perfom search
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   rg_fmt.shellescape(<q-args>), 1,
+  \   s:rg_fmt.shellescape(<q-args>), 1,
   \   fzf#vim#with_preview(), <bang>0)
 
 " uses ripgrep to perform search and allows the ability to provide arguments
@@ -36,7 +36,7 @@ function! FloatingFZF()
         \ 'col': horizontal,
         \ 'width': width,
         \ 'height': height,
-        \ 'style': 'minimal'
+        \ 'style': 'minimal',
         \ }
 
   call nvim_open_win(buf, v:true, opts)
