@@ -1,12 +1,19 @@
 # Startup
 # -------
-- { repo: rafi/awesome-vim-colorschemes, merged: 0 }
-- repo: mhinz/vim-startify
-  hook_add: source $VIM_PATH/config/plugins/startify.vim
 
 - repo: Shougo/dein.vim
+
+- { repo: ryanoasis/vim-devicons, lazy: true }
+- { repo: kristijanhusak/defx-icons, depends: vim-devicons }
+- { repo: rafi/awesome-vim-colorschemes, merged: 0 }
+
+- repo: mhinz/vim-startify
+  depends: vim-devicons
+  hook_add: source $VIM_PATH/config/plugins/startify.vim
+
 - repo: itchyny/vim-gitbranch
 - repo: justinmk/vim-gtfo
+
 - repo: jiangmiao/auto-pairs
   hook_add: |
     let g:AutoPairsShortcutToggle = "<localleader>pt"
@@ -111,6 +118,7 @@
             '<leader>cy', '<leader>c$', '<leader>cA', '<leader>ca', '<leader>cl', '<leader>cb', '<leader>cu' ]
 
 - repo: junegunn/fzf
+  depends: vim-devicons
   merged: 0
   on_cmd: FZF
   type__depth: 1
@@ -167,6 +175,10 @@
 - repo: simeji/winresizer
   on_cmd: [ WinResizerStartResize ]
 
+- repo: kizza/actionmenu.nvim
+  depends: coc.nvim
+  hook_source: source $VIM_PATH/config/plugins/actionmenu.vim
+
 # LSP
 # ----------
 - repo: neoclide/coc.nvim
@@ -175,6 +187,7 @@
   hook_source: source $VIM_PATH/config/plugins/coc.vim
 
 - repo: antoinemadec/coc-fzf
+  depends: coc.nvim
 
 # Navigation
 # ----------
@@ -200,8 +213,8 @@
     highlight QuickScopeSecondary guifg='#eF5F70' gui=underline ctermfg=81 cterm=underline
     let g:qs_max_chars=150
 
-# Msc
-# ---
+# Misc
+# ----
 - repo: christoomey/vim-system-copy
   on_map: {
     'n': [ 'cp', 'cP', 'cv', 'cV' ],

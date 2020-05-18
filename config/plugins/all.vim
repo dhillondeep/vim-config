@@ -20,16 +20,20 @@ if dein#tap('vim-gitgutter')
 endif
 
 if dein#tap('fzf.vim')
-	nnoremap <silent> <expr> <C-a> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":History\<cr>"
-	nnoremap <silent> <expr> <C-f> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Rg\<cr>"
-	nnoremap <silent> <expr> <C-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":BLines\<cr>"
-	nnoremap <silent> <expr> <C-b> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Buffers\<cr>"
-	nnoremap <silent> <expr> <C-Space> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
+	nnoremap <silent> <C-a> :History<cr>
+	nnoremap <silent> <C-f> :Rg<cr>
+	nnoremap <silent> <C-p> :BLines<cr>
+	nnoremap <silent> <C-b> :Buffers<cr>
+	nnoremap <silent> <C-Space> :Files<cr>
 endif
 
 if dein#tap('vista.vim')
 	nnoremap <silent> <LocalLeader>a :Vista!!<CR>
 endif
+
+if dein#tap("actionmenu.nvim")
+	nnoremap <silent> <LocalLeader>s :call ActionMenuCodeActions()<CR>
+end
 
 
 " vim: set ts=2 sw=2 tw=80 noet :
