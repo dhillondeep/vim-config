@@ -1,6 +1,8 @@
 # Startup
 # -------
 - { repo: rafi/awesome-vim-colorschemes, merged: 0 }
+- repo: mhinz/vim-startify
+  hook_add: source $VIM_PATH/config/plugins/startify.vim
 
 - repo: Shougo/dein.vim
 - repo: itchyny/vim-gitbranch
@@ -25,6 +27,7 @@
 - { repo: ekalinin/Dockerfile.vim, on_ft: [ Dockerfile, docker-compose ]}
 - { repo: elzr/vim-json, on_ft: json }
 - { repo: tmux-plugins/vim-tmux, on_ft: tmux }
+- { repo: SirVer/ultisnips }
 
 # Markdown related
 - repo: plasticboy/vim-markdown
@@ -178,3 +181,18 @@
   } 
   hook_add: |
     let g:sneak#label = 1
+    let g:sneak#use_ic_scs = 1
+    let g:sneak#s_next = 1
+
+    let g:sneak#prompt = '🔎 '
+
+
+- repo: unblevable/quick-scope
+  on_map: {
+    'n': [ 'f', 'F', 't', 'T' ]
+  }
+  hook_add: |
+    let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+    highlight QuickScopePrimary guifg='#00C7DF' gui=underline ctermfg=155 cterm=underline
+    highlight QuickScopeSecondary guifg='#eF5F70' gui=underline ctermfg=81 cterm=underline
+    let g:qs_max_chars=150

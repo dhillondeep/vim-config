@@ -124,7 +124,7 @@ nnoremap g! :<C-u>put=execute('')<Left><Left>
 map <Leader>cd :lcd %:p:h<CR>:pwd<CR>
 
 " Open file under the cursor in a vsplit
-nnoremap gf :rightbelow wincmd f<CR>
+nnoremap gf :vert wincmd f<CR>
 
 " Fast saving from all modes
 nnoremap <Leader>w :write<CR>
