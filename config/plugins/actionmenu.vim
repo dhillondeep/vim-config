@@ -1,3 +1,6 @@
+" Actionmenu (https://github.com/kizza/actionmenu.nvim)
+" -----------------------------------------------------
+
 let s:code_actions = []
 
 func! ActionMenuCodeActions() abort

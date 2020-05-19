@@ -56,7 +56,7 @@ call s:source_file('config/plugins/all.vim')
 
 " Initialize configurations
 call s:source_file('config/general.vim')
-"call s:source_file('config/filetype.vim')
+call s:source_file('config/filetype.vim')
 call s:source_file('config/mappings.vim')
 call s:source_file('config/theme.vim')
 

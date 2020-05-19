@@ -52,8 +52,8 @@ cnoremap <C-f> <Right>
 cnoremap <C-b> <Left>
 
 " Navigate between tabs
-noremap <Tab> :tabnext<CR>
-noremap <S-Tab> :tabprevious<CR>
+noremap <LocalLeader><Tab> :tabnext<CR>
+noremap <LocalLeader><S-Tab> :tabprevious<CR>
 
 " }}}
 " Clipboard {{{

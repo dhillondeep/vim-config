@@ -309,9 +309,6 @@ function! badge#indexing() abort
 			let l:out .= get(g:badge_loading_charset, s:wait, '') . ' ' . l:tags
 		endif
 	endif
-	if exists('*coc#status')
-		let l:out .= coc#status()
-	endif
 	if exists('g:SessionLoad') && g:SessionLoad == 1
 		let l:out .= '[s]'
 	endif
@@ -327,3 +324,4 @@ function! s:numtr(number, charset) abort
 endfunction
 
 " vim: set ts=2 sw=2 tw=80 noet :
+

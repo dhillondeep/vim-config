@@ -7,18 +7,6 @@ if dein#tap('defx.nvim')
 		\ :<C-u>Defx `getcwd()` -search=`expand('%:p')` -buffer-name=tab`tabpagenr()`<CR>
 endif
 
-if dein#tap('vim-sidemenu')
-	nmap <Leader>l <Plug>(sidemenu)
-	xmap <Leader>l <Plug>(sidemenu-visual)
-endif
-
-
-if dein#tap('vim-gitgutter')
-	nmap ]g <Plug>(GitGutterNextHunk)
-	nmap [g <Plug>(GitGutterPrevHunk)
-	nmap gs <Plug>(GitGutterPreviewHunk)
-endif
-
 if dein#tap('fzf.vim')
 	nnoremap <silent> <C-a> :History<cr>
 	nnoremap <silent> <C-f> :Rg<cr>
@@ -28,12 +16,16 @@ if dein#tap('fzf.vim')
 endif
 
 if dein#tap('vista.vim')
-	nnoremap <silent> <LocalLeader>a :Vista!!<CR>
+	nnoremap <silent> <LocalLeader><LocalLeader> :Vista!!<CR>
+	nnoremap <silent> <LocalLeader><LocalLeader>f :Vista finder<CR>
 endif
 
 if dein#tap("actionmenu.nvim")
-	nnoremap <silent> <LocalLeader>s :call ActionMenuCodeActions()<CR>
+	nnoremap <silent> <C-;> :call ActionMenuCodeActions()<CR>
 end
 
+if dein#tap("winresizer")
+	nnoremap <silent> <C-e> :WinResizerStartResize<CR>
+end
 
 " vim: set ts=2 sw=2 tw=80 noet :

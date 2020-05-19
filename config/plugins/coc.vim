@@ -1,9 +1,5 @@
-" TextEdit might fail if hidden is not set.
-set hidden
-
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300
+" Coc (https://github.com/neoclide/coc.nvim)
+" ------------------------------------------
 
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
@@ -12,7 +8,7 @@ set shortmess+=c
 " diagnostics appear/become resolved.
 set signcolumn=yes
 
-" Use <c-space> to trigger completion.
+" Use <c-n> to trigger completion.
 inoremap <silent><expr> <c-n> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
@@ -22,6 +18,10 @@ if exists('*complete_info')
 else
   imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endif
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
@@ -80,10 +80,7 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
-" Add (Neo)Vim's native statusline support.
-" NOTE: Please see `:h coc-status` for integrations with external plugins that
-" provide custom statusline: lightline.vim, vim-airline.
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+"set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Mappings using CoCList:
 nnoremap <silent> <localleader>d  :<C-u>CocFzfList diagnostics --current-buf<cr>
@@ -91,17 +88,6 @@ nnoremap <silent> <localleader>D  :<C-u>CocFzfList diagnostics<cr>
 nnoremap <silent> <localleader>c  :<C-u>CocFzfList commands<cr>
 nnoremap <silent> <localleader>o  :<C-u>CocFzfList outline<cr>
 nnoremap <silent> <localleader>s  :<C-u>CocFzfList symbols<cr>
-
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
 
 let g:coc_snippet_next = '<tab>'
 

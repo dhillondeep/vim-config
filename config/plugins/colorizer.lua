@@ -1,6 +1,5 @@
--- nvim-colorizer
--- ===
--- See https://github.com/norcalli/nvim-colorizer.lua
+-- Nvim Colorizer (https://github.com/norcalli/nvim-colorizer.lua)
+------------------------------------------------------------------
 
 require 'colorizer'.setup {
   css = { rgb_fn = true; };

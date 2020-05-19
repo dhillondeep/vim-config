@@ -1,67 +1,47 @@
-" Statusline
-" ---
+" Active statusline
+let s:stl =   '%1* %{StatuslineMode()} %*'
+let s:stl .=   ' '
+let s:stl .=   '%( %{badge#branch()} %)'
+let s:stl .=   '%f '
+let s:stl .=   "%(%{badge#modified('+')} %)"
+let s:stl .=   '%(%{badge#indexing()} %)'
+let s:stl .=   '%='
+let s:stl .=   '%<'
+let s:stl .=   '%(%{CocStatus()}｜%)'
+let s:stl .=   "%{&readonly ? '🔒｜' : ''}"
+let s:stl .=   '%(%{badge#format()}｜%)'
+let s:stl .=   '%(%{&fenc}｜%)'
+let s:stl .=   '%(%{&ft}｜%)'
+let s:stl .=   '%1*%(%5.l:%-3.c%3.p%% %)%*'
 
-let s:stl  = " %{StatuslineMode()}"                " Status mode
-let s:stl .= ' %( %{badge#branch()} %)'           " Git branch name
-let s:stl .= "%6*%{badge#modified('➕')}%0*"       " Write symbol
-let s:stl .= ' %1*%{badge#filename()}%* '         " Filename
-let s:stl .= '%4*%(%{badge#syntax()} %)%*'        " Syntax lint
-let s:stl .= '%3*%(%{badge#indexing()} %)%*'      " Indexing indicator
-let s:stl .= '%='                                 " Align to right
-let s:stl .= '%<'                                 " Truncate here
-let s:stl .= "%4*%{&readonly ? '🔒 ' : ''}%*"       " Modified symbol
-let s:stl .= '%{badge#format()} %4*%*'           " File format
-let s:stl .= '%( %{&fenc} %)'                     " File encoding
-let s:stl .= '%4*%*%( %{&ft} %)'                 " File type
-let s:stl .= '%3*%2* %l/%2c%4p%% '               " Line and column
+" Non Active statusline
+let s:stl_nc  =   "%{&readonly ? ' 🔒｜' : ' '}"
+let s:stl_nc .=   '%{badge#filename()}'
+let s:stl_nc .=   '%='
+let s:stl_nc .=   '%(%{&ft} %)'
 
-" Non-active Statusline
-let s:stl_nc = " %{badge#mode('⚠ ', 'Z')}%n"   " Read-only symbol
-let s:stl_nc .= "%6*%{badge#modified('('➕')}%')}%*"  " Unsaved changes symbol
-let s:stl_nc .= ' %{badge#filename()}'         " Relative supername
-let s:stl_nc .= '%='                           " Align to right
-let s:stl_nc .= '%{&ft} '                      " File type
-
-function! StatuslineMode()
-  let l:mode=mode()
-  if l:mode==#"n"
-    return "NORMAL"
-  elseif l:mode==?"v"
-    return "VISUAL"
-  elseif l:mode==#"i"
-    return "INSERT"
-  elseif l:mode==#"R"
-    return "REPLACE"
-  elseif l:mode==?"s"
-    return "SELECT"
-  elseif l:mode==#"t"
-    return "TERMINAL"
-  elseif l:mode==#"c"
-    return "COMMAND"
-  elseif l:mode==#"!"
-    return "SHELL"
-  endif
-endfunction
-
-" Status-line blacklist
 let s:disable_statusline =
 	\ 'defx\|denite\|vista\|tagbar\|undotree\|diff\|peekaboo\|sidemenu'
 
 function! s:active()
+	hi User1 ctermfg=007 ctermbg=239 guibg=#4f4f4f guifg=#cfcfcf
+
 	if &filetype ==# 'defx'
-		let &l:statusline = '%y %<%=%{badge#filename()}%= %l/%L'
-	elseif &filetype ==# 'magit'
-		let &l:statusline = '%y %{badge#gitstatus()}%<%=%{badge#filename()}%= %l/%L'
+		let &l:statusline = '%y %= %l/%L'
+	elseif &filetype ==# 'vista'
+		let &l:statusline = '%y %= %l/%L'
 	elseif &filetype !~# s:disable_statusline
 		let &l:statusline = s:stl
 	endif
 endfunction
 
 function! s:inactive()
+	hi User1 ctermfg=007 ctermbg=239 guibg=#4f4f4f guifg=#cfcfcf
+
 	if &filetype ==# 'defx'
 		let &l:statusline = '%y %= %l/%L'
-	elseif &filetype ==# 'magit'
-		let &l:statusline = '%y %{badge#gitstatus()}%= %l/%L'
+	elseif &filetype ==# 'vista'
+		let &l:statusline = '%y %= %l/%L'
 	elseif &filetype !~# s:disable_statusline
 		let &l:statusline = s:stl_nc
 	endif
@@ -78,11 +58,46 @@ augroup user_statusline
 	autocmd FileChangedShellPost,BufFilePost,BufNewFile,BufWritePost * redrawstatus
 
 	" Redraw on Plugins custom events
-	autocmd User ALELintPost,ALEFixPost redrawstatus
-	autocmd User NeomakeJobFinished redrawstatus
-	autocmd User GutentagsUpdating redrawstatus
 	autocmd User CocStatusChange,CocGitStatusChange redrawstatus
 	autocmd User CocDiagnosticChange redrawstatus
-augroup END
+augroup EN
 
-" vim: set ts=2 sw=2 tw=80 noet :
+
+function! CocStatus() abort
+	if exists('*coc#status')
+		let l:cocstatus = coc#status()
+		return l:cocstatus
+	endif
+	return ''
+endfunction
+
+let g:currentmode={
+    \ 'n'      : 'NORMAL',
+    \ 'no'     : 'N·OPERATON PENDING',
+    \ 'v'      : 'VISUAL',
+    \ 'V'      : 'V·LINE',
+    \ '\<C-V>' : 'V·BLOCK',
+    \ 's'      : 'SELECT',
+    \ 'S'      : 'S·LINE',
+    \ '\<C-S>' : 'S·BLOCK',
+    \ 'i'      : 'INSERT',
+    \ 'R'      : 'REPLACE',
+    \ 'Rv'     : 'V·REPLACE',
+    \ 'c'      : 'COMMAND',
+    \ 'cv'     : 'VIM EX',
+    \ 'ce'     : 'EX',
+    \ 'r'      : 'PROMPT',
+    \ 'rm'     : 'MORE',
+    \ 'r?'     : 'CONFIRM',
+    \ '!'      : 'SHELL',
+    \ 't'      : 'TERMINAL'
+    \}
+
+
+function! StatuslineMode()
+	let l:mode = mode()
+	let l:modeval = get(g:currentmode, l:mode, '')
+  return l:modeval
+endfunction
+
+"" vim: set ts=2 sw=2 tw=80 noet :

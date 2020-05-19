@@ -1,71 +1,124 @@
-# Startup
-# -------
-
+# Plugin Management
 - repo: Shougo/dein.vim
+- repo: wsdjeg/dein-ui.vim
 
-- { repo: ryanoasis/vim-devicons, lazy: true }
-- { repo: kristijanhusak/defx-icons, depends: vim-devicons }
-- { repo: rafi/awesome-vim-colorschemes, merged: 0 }
+# Colors and Icons
+- repo: ryanoasis/vim-devicons
 
-- repo: mhinz/vim-startify
+- repo: kristijanhusak/defx-icons
   depends: vim-devicons
+
+- repo: rafi/awesome-vim-colorschemes
+
+# Startup
+- repo: mhinz/vim-startify
   hook_add: source $VIM_PATH/config/plugins/startify.vim
 
+# Navigation
+- repo: christoomey/vim-tmux-navigator
+  if: "! (has('win32') || has('win64'))"
+
+- repo: Shougo/defx.nvim
+  on_cmd: Defx
+  hook_source: source $VIM_PATH/config/plugins/defx.vim
+
+- repo: junegunn/fzf
+  build: "./install --all"
+  merged: 0
+
+- repo: junegunn/fzf.vim
+  merged: 0
+  depends: fzf
+  on_cmd: [ Files, Buffers, History, BLines, Colors, Rg, Rgrep ]
+  on_func: [ 'fzf#vim#with_preview', 'fzf#run', 'vista#finder#fzf#Run', 'fzf#vim#grep' ]
+  hook_source: source $VIM_PATH/config/plugins/fzf.vim
+
+- repo: antoinemadec/coc-fzf
+  depends: [coc.nvim, fzf.vim]
+  on_source: fzf.vim
+
+# Register and Movemenets
+- repo: justinmk/vim-sneak
+  on_map: {
+    'nx': [ 'S', 's' ]
+  }
+  hook_add: |
+    let g:sneak#label = 1
+    let g:sneak#use_ic_scs = 1
+    let g:sneak#s_next = 1
+    let g:sneak#prompt = '🔎 '
+
+- repo: unblevable/quick-scope
+  on_map: {
+    'nx': [ 'f', 'F', 't', 'T' ]
+  }
+  hook_add: |
+    let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+    highlight QuickScopePrimary guifg='#00C7DF' gui=underline ctermfg=155 cterm=underline
+    highlight QuickScopeSecondary guifg='#eF5F70' gui=underline ctermfg=81 cterm=underline
+    let g:qs_max_chars=150
+
+- repo: christoomey/vim-system-copy
+  on_map: {
+    'nx': [ 'cp', 'cP', 'cv', 'cV' ],
+  }
+
+# Interface
+- repo: kristijanhusak/defx-git
+  depends: defx.nvim
+  on_source: defx.nvim
+
+- repo: machakann/vim-highlightedyank
+  on_event: TextYankPost
+  hook_source: let g:highlightedyank_highlight_duration = 200
+
+- repo: kizza/actionmenu.nvim
+  hook_source: source $VIM_PATH/config/plugins/actionmenu.vim
+
+- repo: simeji/winresizer
+  on_cmd: WinResizerStartResize
+
+- repo: hotwatermorning/auto-git-diff
+  on_ft: gitrebase
+
+- repo: norcalli/nvim-colorizer.lua
+  if: has('nvim-0.4')
+  on_event: FileType
+  hook_source: luafile $VIM_PATH/config/plugins/colorizer.lua
+
 - repo: itchyny/vim-gitbranch
-- repo: justinmk/vim-gtfo
+
+# Autocompletion
+- repo: preservim/nerdcommenter
+  on_map: [ '<Leader>cc', '<leader>cn', '<leader>c<space>', '<leader>cm', '<leader>ci', '<leader>cs',
+            '<leader>cy', '<leader>c$', '<leader>cA', '<leader>ca', '<leader>cl', '<leader>cb', '<leader>cu' ]
 
 - repo: jiangmiao/auto-pairs
   hook_add: |
     let g:AutoPairsShortcutToggle = "<localleader>pt"
     let g:AutoPairsFlyMode = 1
 
-- repo: christoomey/vim-tmux-navigator
-  if: "! (has('win32') || has('win64'))"
+- repo: SirVer/ultisnips
+  on_source: coc.nvim
 
-# Lazy Loading 
-# ------------
-
-# Languages
-# ---------
+# Language and Files
 - repo: sheerun/vim-polyglot
 
-- { repo: vim-ruby/vim-ruby, on_ft: ruby }
-- { repo: tpope/vim-rails, on_ft: ruby }
-- { repo: ekalinin/Dockerfile.vim, on_ft: [ Dockerfile, docker-compose ]}
-- { repo: elzr/vim-json, on_ft: json }
-- { repo: tmux-plugins/vim-tmux, on_ft: tmux }
-- { repo: SirVer/ultisnips }
+- repo: vim-ruby/vim-ruby
+  on_ft: ruby
 
-# Markdown related
-- repo: plasticboy/vim-markdown
-  on_ft: markdown
-  hook_add: |
-    let g:vim_markdown_frontmatter = 1
-    let g:vim_markdown_strikethrough = 1
-    let g:vim_markdown_folding_level = 6
-    let g:vim_markdown_override_foldtext = 1
-    let g:vim_markdown_folding_style_pythonic = 1
-    let g:vim_markdown_conceal = 0
-    let g:vim_markdown_conceal_code_blocks = 0
-    let g:vim_markdown_edit_url_in = 'vsplit'
-    let g:vim_markdown_auto_insert_bullets = 1
-    let g:vim_markdown_new_list_item_indent = 0
-    let g:vim_markdown_toc_autofit = 0
-    let g:vim_markdown_fenced_languages = [
-      \ 'c++=cpp',
-      \ 'viml=vim',
-      \ 'bash=sh',
-      \ 'ini=dosini',
-      \ 'js=javascript',
-      \ 'json=javascript',
-      \ 'jsx=javascriptreact',
-      \ 'tsx=typescriptreact',
-      \ 'docker=Dockerfile',
-      \ 'makefile=make',
-      \ 'py=python'
-      \ ]
+- repo: tpope/vim-rails
+  on_ft: ruby
 
-# Golang
+- repo: stephpy/vim-yaml
+  on_ft: yaml
+
+- repo: ekalinin/Dockerfile.vim
+  on_ft: [ Dockerfile, docker-compose ]
+
+- repo: tmux-plugins/vim-tmux
+  on_ft: tmux
+
 - repo: fatih/vim-go
   on_ft: [ go, gomod ]
   hook_add: |
@@ -93,130 +146,13 @@
     let g:go_highlight_generate_tags = 1
     let g:go_highlight_operators = 1
 
-# Commands
-# --------
-- repo: Shougo/defx.nvim
-  on_cmd: Defx
-  hook_source: source $VIM_PATH/config/plugins/defx.vim
-
-- repo: liuchengxu/vista.vim
-  on_cmd: Vista
-  hook_add: |
-    let g:vista_default_executive = 'coc'
-    let g:vista_fzf_preview = ['right:50%']
-    let g:vista_executive_for = {
-      \ 'vimwiki': 'markdown',
-      \ 'pandoc': 'markdown',
-      \ 'markdown': 'toc',
-      \ }
-
-- { repo: kristijanhusak/defx-git, on_source: defx.nvim }
-- { repo: dstein64/vim-startuptime, on_cmd: StartupTime }
-
-- repo: preservim/nerdcommenter
-  on_map: [ '<Leader>cc', '<leader>cn', '<leader>c<space>', '<leader>cm', '<leader>ci', '<leader>cs', 
-            '<leader>cy', '<leader>c$', '<leader>cA', '<leader>ca', '<leader>cl', '<leader>cb', '<leader>cu' ]
-
-- repo: junegunn/fzf
-  depends: vim-devicons
-  merged: 0
-  on_cmd: FZF
-  type__depth: 1
-
-- repo: junegunn/fzf.vim
-  depends: fzf
-  merged: 0
-  on_cmd: [ Files, Buffers, History, BLines, Colors, Rg, Rgrep ]
-  on_func: [ 'fzf#vim#with_preview', 'fzf#run', 'vista#finder#fzf#Run', 'fzf#vim#grep' ]
-  hook_source: source $VIM_PATH/config/plugins/fzf.vim
-
-- { repo: tpope/vim-git, on_ft: [ gitcommit, gitrebase, gitconfig ]}
-
-# Inteface
-# --------
-- { repo: hotwatermorning/auto-git-diff, on_ft: gitrebase }
-
-- repo: machakann/vim-highlightedyank
-  on_event: TextYankPost
-  hook_source: let g:highlightedyank_highlight_duration = 200
-
-- repo: norcalli/nvim-colorizer.lua
-  if: has('nvim-0.4')
-  on_event: FileType
-  hook_source: luafile $VIM_PATH/config/plugins/colorizer.lua
-
-- repo: airblade/vim-gitgutter
-  on_event: FileType
-  hook_add: |
-    let g:gitgutter_map_keys = 0
-    let g:gitgutter_sign_added = '▎'
-    let g:gitgutter_sign_modified = '▎'
-    let g:gitgutter_sign_removed = '▍'
-    let g:gitgutter_sign_removed_first_line = '▘'
-    let g:gitgutter_sign_modified_removed = '▍'
-    let g:gitgutter_preview_win_floating = 1
-    let g:gitgutter_sign_allow_clobber = 0
-    let g:gitgutter_sign_priority = 0
-    let g:gitgutter_override_sign_column_highlight = 0
-
-- repo: kshenoy/vim-signature
-  depends: vim-gitgutter
-  on_event: FileType
-  hook_add: |
-    let g:SignatureForceRemoveGlobal = 0
-    let g:SignatureUnconditionallyRecycleMarks = 1
-    let g:SignatureErrorIfNoAvailableMarks = 0
-    let g:SignaturePurgeConfirmation = 0
-    let g:SignatureMarkTextHLDynamic = 1
-    let g:SignatureMarkerTextHLDynamic = 1
-    let g:SignatureIncludeMarkers = repeat('⚐', 10)
-    autocmd user_events User GitGutter call signature#sign#Refresh()
-
-- repo: simeji/winresizer
-  on_cmd: [ WinResizerStartResize ]
-
-- repo: kizza/actionmenu.nvim
-  depends: coc.nvim
-  hook_source: source $VIM_PATH/config/plugins/actionmenu.vim
-
-# LSP
-# ----------
+# LSP and Linting
 - repo: neoclide/coc.nvim
   merged: 0
   rev: release
   hook_source: source $VIM_PATH/config/plugins/coc.vim
 
-- repo: antoinemadec/coc-fzf
-  depends: coc.nvim
+- repo: liuchengxu/vista.vim
+  on_cmd: Vista
+  hook_add: source $VIM_PATH/config/plugins/vista.vim
 
-# Navigation
-# ----------
-- repo: justinmk/vim-sneak
-  on_map: {
-    'n': [ 'S', 's' ]
-  } 
-  hook_add: |
-    let g:sneak#label = 1
-    let g:sneak#use_ic_scs = 1
-    let g:sneak#s_next = 1
-
-    let g:sneak#prompt = '🔎 '
-
-
-- repo: unblevable/quick-scope
-  on_map: {
-    'n': [ 'f', 'F', 't', 'T' ]
-  }
-  hook_add: |
-    let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-    highlight QuickScopePrimary guifg='#00C7DF' gui=underline ctermfg=155 cterm=underline
-    highlight QuickScopeSecondary guifg='#eF5F70' gui=underline ctermfg=81 cterm=underline
-    let g:qs_max_chars=150
-
-# Misc
-# ----
-- repo: christoomey/vim-system-copy
-  on_map: {
-    'n': [ 'cp', 'cP', 'cv', 'cV' ],
-    'x': [ 'cp', 'cP', 'cv', 'cV' ],
-  }
