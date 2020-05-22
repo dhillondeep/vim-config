@@ -19,9 +19,9 @@ else
   imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endif
 
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+" Use `;-[` and `;-]` to navigate diagnostics
+nmap <silent> <Localleader>[ <Plug>(coc-diagnostic-prev)
+nmap <silent> <Localleader>] <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
@@ -80,8 +80,6 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
-"set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
 " Mappings using CoCList:
 nnoremap <silent> <localleader>d  :<C-u>CocFzfList diagnostics --current-buf<cr>
 nnoremap <silent> <localleader>D  :<C-u>CocFzfList diagnostics<cr>
@@ -89,9 +87,13 @@ nnoremap <silent> <localleader>c  :<C-u>CocFzfList commands<cr>
 nnoremap <silent> <localleader>o  :<C-u>CocFzfList outline<cr>
 nnoremap <silent> <localleader>s  :<C-u>CocFzfList symbols<cr>
 
-let g:coc_snippet_next = '<tab>'
+let g:coc_snippet_next = '<C-n>'
 
 " highlights
 hi! link CocErrorSign WarningMsg
 hi! link CocWarningSign Number
 hi! link CocInfoSign Type
+
+" set signs
+let g:coc_status_error_sign = '✖'
+let g:coc_status_warning_sign = 'ⁱ'

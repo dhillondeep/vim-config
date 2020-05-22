@@ -52,8 +52,8 @@ cnoremap <C-f> <Right>
 cnoremap <C-b> <Left>
 
 " Navigate between tabs
-noremap <LocalLeader><Tab> :tabnext<CR>
-noremap <LocalLeader><S-Tab> :tabprevious<CR>
+noremap <S-l> :tabnext<CR>
+noremap <S-h> :tabprevious<CR>
 
 " }}}
 " Clipboard {{{
@@ -129,9 +129,6 @@ nnoremap gf :vert wincmd f<CR>
 " Fast saving from all modes
 nnoremap <Leader>w :write<CR>
 xnoremap <Leader>w <Esc>:write<CR>
-nnoremap <C-s> :<C-u>write<CR>
-xnoremap <C-s> :<C-u>write<CR>
-cnoremap <C-s> <C-u>write<CR>
 
 " Other saving and quititng
 

@@ -250,10 +250,10 @@ endif
 " Pseudo-transparency for completion menu and floating windows
 if &termguicolors
 	if exists('&pumblend')
-		set pumblend=10
+		set pumblend=20
 	endif
 	if exists('&winblend')
-		set winblend=10
+		set winblend=20
 	endif
 endif
 

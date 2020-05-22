@@ -37,6 +37,11 @@
   depends: [coc.nvim, fzf.vim]
   on_source: fzf.vim
 
+  # on for ruby
+- repo: AlexVKO/fzf-to-functions.vim
+  on_source: deoplete.nvim
+  on_ft: ruby
+
 # Register and Movemenets
 - repo: justinmk/vim-sneak
   on_map: {
@@ -99,7 +104,13 @@
     let g:AutoPairsFlyMode = 1
 
 - repo: SirVer/ultisnips
-  on_source: coc.nvim
+  on_source: [coc.nvim, deoplete.nvim]
+  hook_add: |
+    let g:UltiSnipsExpandTrigger='<Tab>'
+    let g:UltiSnipsJumpForwardTrigger='<c-n>'
+    let g:UltiSnipsJumpBackwardTrigger='<c-p>'
+
+- repo: tpope/vim-fugitive
 
 # Language and Files
 - repo: sheerun/vim-polyglot
@@ -146,13 +157,34 @@
     let g:go_highlight_generate_tags = 1
     let g:go_highlight_operators = 1
 
-# LSP and Linting
+# LSP, Linting, and Autocompletion
 - repo: neoclide/coc.nvim
   merged: 0
   rev: release
   hook_source: source $VIM_PATH/config/plugins/coc.vim
+  on_ft: [go, python, vim, c, cpp, yaml, json]
 
 - repo: liuchengxu/vista.vim
   on_cmd: Vista
+  on_source: coc.nvim
   hook_add: source $VIM_PATH/config/plugins/vista.vim
 
+- repo: Shougo/deoplete.nvim
+  on_ft: [ruby, toml]
+  hook_source: |
+    let g:deoplete#enable_at_startup = 1
+    let deoplete#tag#cache_limit_size = 5000000
+
+- repo: dense-analysis/ale
+  on_source: deoplete.nvim
+  hook_add: |
+    let g:ale_disable_lsp = 0
+    let g:ale_lint_on_enter = 0
+    let g:ale_lint_on_save = 1
+    let g:ale_echo_delay = 100
+    let g:ale_lint_delay = 1000
+    let g:ale_history_enabled = 0
+    let g:ale_echo_msg_format = '%linter%: %code: %%s [%severity%]'
+    let g:ale_sign_error = '✖'
+    let g:ale_sign_warning = 'ⁱ'
+    let g:ale_maximum_file_size = 500000
