@@ -104,11 +104,9 @@
     let g:AutoPairsFlyMode = 1
 
 - repo: SirVer/ultisnips
-  on_source: [coc.nvim, deoplete.nvim]
-  hook_add: |
-    let g:UltiSnipsExpandTrigger='<Tab>'
-    let g:UltiSnipsJumpForwardTrigger='<c-n>'
-    let g:UltiSnipsJumpBackwardTrigger='<c-p>'
+  on_source: coc.nvim
+
+- repo: honza/vim-snippets
 
 - repo: tpope/vim-fugitive
 

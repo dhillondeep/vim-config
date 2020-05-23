@@ -49,6 +49,7 @@ if dein#tap("vim-fugitive")
 	nnoremap <Leader>gpl :Dispatch! git pull<CR>
 endif
 
+" pry debugging
 nmap <LocalLeader>p :call PryLine()<cr>
 
 let s:pry_string = "require 'pry'; binding.pry"

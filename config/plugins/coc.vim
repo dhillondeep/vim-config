@@ -87,13 +87,21 @@ nnoremap <silent> <localleader>c  :<C-u>CocFzfList commands<cr>
 nnoremap <silent> <localleader>o  :<C-u>CocFzfList outline<cr>
 nnoremap <silent> <localleader>s  :<C-u>CocFzfList symbols<cr>
 
-let g:coc_snippet_next = '<C-n>'
+" Mapping <tab> to use for snippets
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
 
 " highlights
-hi! link CocErrorSign WarningMsg
-hi! link CocWarningSign Number
-hi! link CocInfoSign Type
-
-" set signs
-let g:coc_status_error_sign = '✖'
-let g:coc_status_warning_sign = 'ⁱ'
+hi! link CocErrorSign ErrorMsg
+hi! link CocWarningSign WarningMsg
+hi! link CocInfoSign Title
