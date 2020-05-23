@@ -7,3 +7,6 @@
 /.stfolder
 /.stversions
 .DS_STORE
+extensions/*
+!/extensions/package.json
+!/extensions/yarn.lock
