@@ -30,15 +30,6 @@ if dein#tap("winresizer")
 	nnoremap <silent> <C-e> :WinResizerStartResize<CR>
 end
 
-if dein#tap("deoplete.nvim")
-    nnoremap <silent>gd <C-]>
-endif
-
-if dein#tap("ale")
-	nnoremap <silent> <LocalLeader>[ :ALEPrevious<CR>
-	nnoremap <silent> <LocalLeader>] :ALENext<CR>
-endif
-
 if dein#tap("vim-fugitive")
 	" fugitive git bindings
 	nnoremap <Leader>ga :Git add %:p<CR><CR>
