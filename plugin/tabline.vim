@@ -1,8 +1,6 @@
 " Tabline
 " ---
 
-hi User1 ctermfg=007 ctermbg=239 guibg=#4f4f4f
-
 function! Tabline()
 	" Active project name
 	let s:tabline =

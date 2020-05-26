@@ -24,7 +24,7 @@ let s:disable_statusline =
 	\ 'defx\|denite\|vista\|tagbar\|undotree\|diff\|peekaboo\|sidemenu'
 
 function! s:active()
-	hi User1 ctermfg=007 ctermbg=239 guibg=#4f4f4f guifg=#cfcfcf
+	hi User1 ctermfg=0 ctermbg=0 guibg=#98c379 guifg=#000000
 
 	if &filetype ==# 'defx'
 		let &l:statusline = '%y %= %l/%L'
@@ -36,7 +36,7 @@ function! s:active()
 endfunction
 
 function! s:inactive()
-	hi User1 ctermfg=007 ctermbg=239 guibg=#4f4f4f guifg=#cfcfcf
+	hi User1 ctermfg=0 ctermbg=0 guibg=#98c379 guifg=#000000
 
 	if &filetype ==# 'defx'
 		let &l:statusline = '%y %= %l/%L'
