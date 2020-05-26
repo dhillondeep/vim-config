@@ -22,31 +22,26 @@ if dein#tap('vista.vim')
 	nnoremap <silent> <LocalLeader><LocalLeader>f :Vista finder<CR>
 endif
 
-if dein#tap("actionmenu.nvim")
-	nnoremap <silent> <C-;> :call ActionMenuCodeActions()<CR>
-end
-
 if dein#tap("winresizer")
 	nnoremap <silent> <C-e> :WinResizerStartResize<CR>
-end
+endif
 
 if dein#tap("vim-fugitive")
 	" fugitive git bindings
 	nnoremap <Leader>ga :Git add %:p<CR><CR>
 	nnoremap <Leader>gs :Gstatus<CR>
-	nnoremap <Leader>gc :Gcommit -v -q<CR>
-	nnoremap <Leader>gt :Gcommit -v -q %:p<CR>
+	nnoremap <Leader>gc :Gcommit -v -q %:p<CR>
 	nnoremap <Leader>gd :Gdiff<CR>
 	nnoremap <Leader>ge :Gedit<CR>
-	nnoremap <Leader>gr :Gread<CR>
-	nnoremap <Leader>gw :Gwrite<CR><CR>
-	nnoremap <Leader>gl :silent! Glog<CR>:bot copen<CR>
 	nnoremap <Leader>gp :Ggrep<Space>
-	nnoremap <Leader>gm :Gmove<Space>
 	nnoremap <Leader>gb :Git branch<Space>
-	nnoremap <Leader>go :Git checkout<Space>
-	nnoremap <Leader>gps :Dispatch! git push<CR>
-	nnoremap <Leader>gpl :Dispatch! git pull<CR>
+endif
+
+if dein#tap("vim-signify")
+	nnoremap <leader>gj <plug>(signify-next-hunk)
+	nnoremap <leader>gk <plug>(signify-prev-hunk)
+
+	nnoremap <LocalLeader>gt ::SignifyToggle<CR>
 endif
 
 " pry debugging

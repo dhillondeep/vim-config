@@ -75,10 +75,7 @@
 
 - repo: machakann/vim-highlightedyank
   on_event: TextYankPost
-  hook_source: let g:highlightedyank_highlight_duration = 200
-
-- repo: kizza/actionmenu.nvim
-  hook_source: source $VIM_PATH/config/plugins/actionmenu.vim
+  hook_source: let g:highlightedyank_highlight_duration = 300
 
 - repo: simeji/winresizer
   on_cmd: WinResizerStartResize
@@ -104,11 +101,8 @@
     let g:AutoPairsFlyMode = 1
 
 - repo: SirVer/ultisnips
-  on_source: coc.nvim
 
 - repo: honza/vim-snippets
-
-- repo: tpope/vim-fugitive
 
 # Language and Files
 - repo: sheerun/vim-polyglot
@@ -165,3 +159,21 @@
   merged: 0
   rev: release
   hook_source: source $VIM_PATH/config/plugins/coc.vim
+
+# Other Stuff
+- repo: tpope/vim-fugitive
+  on_cmd: [Git, Gstatus, Gcommit, Gdiff, Gdiff, Gedit, Ggrep]
+
+- repo: mhinz/vim-signify
+  hook_add: |
+    let g:signify_sign_show_count = 0
+    let g:signify_sign_show_text = 1
+
+- repo: junegunn/gv.vim
+  on_cmd: ['GV', 'GV!', 'GV?']
+  depends: vim-fugitive
+  on_source: vim-fugitive
+
+- repo: tpope/vim-surround
+
+- repo: tpope/vim-repeat
