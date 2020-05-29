@@ -162,7 +162,6 @@
 
 # Other Stuff
 - repo: tpope/vim-fugitive
-  on_cmd: [Git, Gstatus, Gcommit, Gdiff, Gdiff, Gedit, Ggrep]
 
 - repo: mhinz/vim-signify
   hook_add: |
@@ -170,9 +169,6 @@
     let g:signify_sign_show_text = 1
 
 - repo: junegunn/gv.vim
-  on_cmd: ['GV', 'GV!', 'GV?']
-  depends: vim-fugitive
-  on_source: vim-fugitive
 
 - repo: tpope/vim-surround
 
