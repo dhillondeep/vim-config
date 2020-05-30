@@ -29,7 +29,7 @@
 - repo: junegunn/fzf.vim
   merged: 0
   depends: fzf
-  on_cmd: [ Files, Buffers, History, BLines, Colors, Rg, Rgrep ]
+  on_cmd: [ Files, Buffers, History, BLines, Colors, Rg, Rgrep, GFiles ]
   on_func: [ 'fzf#vim#with_preview', 'fzf#run', 'vista#finder#fzf#Run', 'fzf#vim#grep' ]
   hook_source: source $VIM_PATH/config/plugins/fzf.vim
 
