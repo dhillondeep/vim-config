@@ -71,7 +71,7 @@ set viewdir=$DATA_PATH/view/
 set spellfile=$VIM_PATH/spell/en.utf-8.add
 
 " History saving
-set history=2000
+set history=5000
 
 if has('nvim') && ! has('win32') && ! has('win64')
 	set shada=!,'300,<50,@100,s10,h
@@ -215,11 +215,11 @@ set laststatus=2            " Always show a status line
 set colorcolumn=+0          " Column highlight at textwidth's max character-limit
 set display=lastline
 
-if has('folding') && has('vim_starting')
-	set foldenable
-	set foldmethod=indent
-	set foldlevelstart=99
-endif
+"if has('folding') && has('vim_starting')
+	"set foldenable
+	"set foldmethod=indent
+	"set foldlevelstart=99
+"endif
 
 " UI Symbols
 " icons:  ▏│ ¦ ╎ ┆ ⋮ ⦙ ┊ 

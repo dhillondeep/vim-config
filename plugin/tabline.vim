@@ -2,6 +2,7 @@
 " ---
 
 function! Tabline()
+	hi User1 ctermfg=0 ctermbg=0 guibg=#ffbb7d guifg=#000000
 	" Active project name
 	let s:tabline =
 		\ '%1* %{badge#project()} %* '

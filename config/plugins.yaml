@@ -37,11 +37,6 @@
   depends: [coc.nvim, fzf.vim]
   on_source: fzf.vim
 
-  # on for ruby
-- repo: AlexVKO/fzf-to-functions.vim
-  on_source: deoplete.nvim
-  on_ft: ruby
-
 # Register and Movemenets
 - repo: justinmk/vim-sneak
   on_map: {
@@ -88,39 +83,24 @@
   on_event: FileType
   hook_source: luafile $VIM_PATH/config/plugins/colorizer.lua
 
-- repo: itchyny/vim-gitbranch
+- repo: dhillondeep/eleline.vim
+  hook_add: |
+    let g:eleline_powerline_fonts = 1
+
 
 # Autocompletion
 - repo: preservim/nerdcommenter
   on_map: [ '<Leader>cc', '<leader>cn', '<leader>c<space>', '<leader>cm', '<leader>ci', '<leader>cs',
             '<leader>cy', '<leader>c$', '<leader>cA', '<leader>ca', '<leader>cl', '<leader>cb', '<leader>cu' ]
 
-- repo: jiangmiao/auto-pairs
-  hook_add: |
-    let g:AutoPairsShortcutToggle = "<localleader>pt"
-    let g:AutoPairsFlyMode = 1
-
 - repo: SirVer/ultisnips
-
 - repo: honza/vim-snippets
 
 # Language and Files
 - repo: sheerun/vim-polyglot
 
-- repo: vim-ruby/vim-ruby
-  on_ft: ruby
-
 - repo: tpope/vim-rails
   on_ft: ruby
-
-- repo: stephpy/vim-yaml
-  on_ft: yaml
-
-- repo: ekalinin/Dockerfile.vim
-  on_ft: [ Dockerfile, docker-compose ]
-
-- repo: tmux-plugins/vim-tmux
-  on_ft: tmux
 
 - repo: fatih/vim-go
   on_ft: [ go, gomod ]
@@ -131,30 +111,8 @@
     let g:go_template_autocreate = 0
     let g:go_decls_mode = "fzf"
     let g:go_echo_command_info = 0
-    let g:go_doc_keywordprg_enabled = 0
-    let g:go_mod_fmt_autosave = 0
-    let g:go_highlight_array_whitespace_error = 0
-    let g:go_highlight_chan_whitespace_error = 0
-    let g:go_highlight_space_tab_error = 0
-    let g:go_highlight_trailing_whitespace_error = 0
-    let g:go_highlight_extra_types = 1
-    let g:go_highlight_build_constraints = 1
-    let g:go_highlight_extra_types = 1
-    let g:go_highlight_fields = 1
-    let g:go_highlight_format_strings = 1
-    let g:go_highlight_functions = 1
-    let g:go_highlight_function_calls = 1
-    let g:go_highlight_function_parameters = 1
-    let g:go_highlight_types = 1
-    let g:go_highlight_generate_tags = 1
-    let g:go_highlight_operators = 1
 
-# LSP, Linting, and Autocompletion
-- repo: liuchengxu/vista.vim
-  on_cmd: Vista
-  on_source: coc.nvim
-  hook_add: source $VIM_PATH/config/plugins/vista.vim
-
+# LSP
 - repo: neoclide/coc.nvim
   merged: 0
   rev: release
@@ -163,12 +121,14 @@
 # Other Stuff
 - repo: tpope/vim-fugitive
 
+- repo: tyru/open-browser.vim
+- repo: tyru/open-browser-github.vim
+  depends: open-browser.vim
+
 - repo: mhinz/vim-signify
   hook_add: |
     let g:signify_sign_show_count = 0
     let g:signify_sign_show_text = 1
-
-- repo: junegunn/gv.vim
 
 - repo: tpope/vim-surround
 

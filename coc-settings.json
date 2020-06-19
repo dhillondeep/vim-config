@@ -5,7 +5,7 @@
     "languageserver": {
       "sorbet": {
         "command": "srb",
-        "args": ["tc", "--lsp", "--enable-all-experimental-lsp-features"],
+        "args": ["tc", "--typed", "true", "--enable-all-experimental-lsp-features", "--lsp", "--disable-watchman"],
         "filetypes": ["ruby"],
         "rootPatterns": ["sorbet/config"],
         "initializationOptions": {},
