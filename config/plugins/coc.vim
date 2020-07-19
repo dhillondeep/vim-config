@@ -105,5 +105,3 @@ let g:coc_snippet_next = '<tab>'
 hi! link CocErrorSign ErrorMsg
 hi! link CocWarningSign WarningMsg
 hi! link CocInfoSign Title
-
-let g:coc_node_path = '/Users/deep/.nvm/versions/node/v14.3.0/bin/node'

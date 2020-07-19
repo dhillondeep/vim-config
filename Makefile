@@ -13,6 +13,7 @@ install:
 	@mkdir -vp "$(XDG_CONFIG_HOME)/coc"
 	@ln -sf "$(CURRENT_DIR)extensions" "$(XDG_CONFIG_HOME)/coc/extensions"
 	@cd "$(CURRENT_DIR)extensions" && yarn install
+	@python3 install neovim
 
 update-repo:
 	@git pull --ff --ff-only

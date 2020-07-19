@@ -26,12 +26,13 @@ coc-cmake@>=0.0.1:
   resolved "https://registry.yarnpkg.com/coc-cmake/-/coc-cmake-0.0.1.tgz#8905c30f20daf314b51c9969ad642af6abeea8e3"
   integrity sha512-wNkkJ3rFzzUDoJU6T0+u036OusqbaudkEwpiRoI/B2mlNnrjHsFEuGXbX9NRDMUlVfTS5V2Ko1kKks88L8h8gw==
 
-coc-go@>=0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/coc-go/-/coc-go-0.7.0.tgz#aa48e4311f3d21721ef616526b025cf18f91afe3"
-  integrity sha512-ntDgRtLshBtxUuUXkkxH2S+xUWZW86ptrLO0pe74MzeS6m/Z744QvwSor+abHUTHO370nrUEUtGaQDUEh9p2BA==
+coc-go@>=0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/coc-go/-/coc-go-0.8.0.tgz#bb2baf4e65930a5d9e8451e61d125d732dd62eef"
+  integrity sha512-PMMybjPvAT+gGZDRaTmq1rIe59JsG9WRWWzVlT3gRo/Zp5Xwg2ho424m65ubGgre/UU23D9LVH9FLZDU4NH2Gg==
   dependencies:
-    tslib "^1.11.1"
+    node-fetch "^2.6.0"
+    tslib "^2.0.0"
     which "^2.0.2"
 
 coc-json@>=1.2.6:
@@ -50,6 +51,11 @@ coc-yaml@>=1.0.4:
   integrity sha512-ChwFqLSF0C/c/LIhJR6ycOc7JZreFkGeNOol/+oPw+OFvY5Zgz8vjdDzmwXZlKwQMIuZAnDUFZOJaYUyCRJzsw==
   dependencies:
     yaml-language-server "^0.7.2"
+
+coc-yank@>=1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/coc-yank/-/coc-yank-1.1.4.tgz#32e908cc72a7253b2d0ba1d5c2340bdd3601a5a1"
+  integrity sha512-8qonhyBfipzni6Fbbdm9hOjUIdLtwPGqnVGxA5DV+Kd4ctvD+FiBRuaWnXWf4QqxC8ATHQyTyoSqrvdXdko4PA==
 
 debug@3.1.0:
   version "3.1.0"
@@ -126,6 +132,11 @@ ms@^2.1.1:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
+node-fetch@^2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.0.tgz#e633456386d4aa55863f676a7ab0daa8fdecb0fd"
+  integrity sha512-8dG4H5ujfvFiqDmVu9fQ5bOHUC15JMjMY/Zumv26oOvvVJjM67KF8koCWIabKQ1GJIa9r2mMZscBq/TbdOcmNA==
+
 prettier@^1.18.2:
   version "1.19.1"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.19.1.tgz#f7d7f5ff8a9cd872a7be4ca142095956a60797cb"
@@ -145,10 +156,10 @@ sprintf-js@~1.0.2:
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
 
-tslib@^1.11.1:
-  version "1.11.1"
-  resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.11.1.tgz#eb15d128827fbee2841549e171f45ed338ac7e35"
-  integrity sha512-aZW88SY8kQbU7gpV19lN24LtXh/yD4ZZg6qieAJDDg+YBsJcSmLGK9QpnUjAKVG/xefmvJGd1WUmfpT/g6AJGA==
+tslib@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.0.tgz#18d13fc2dce04051e20f074cc8387fd8089ce4f3"
+  integrity sha512-lTqkx847PI7xEDYJntxZH89L2/aXInsyF2luSafe/+0fHOMjlBNXdH6th7f70qxLDhul7KZK0zC8V5ZIyHl0/g==
 
 vscode-json-languageservice@^3.3.0:
   version "3.5.2"
