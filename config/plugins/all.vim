@@ -14,12 +14,7 @@ if dein#tap('fzf.vim')
 	nnoremap <silent> <C-b> :Buffers<cr>
 	nnoremap <silent> <C-s> :BTags<cr>
 	nnoremap <silent> <C-g> :GFiles<cr>
-	nnoremap <silent> <C-Space> :Files<cr>
-endif
-
-if dein#tap('vista.vim')
-	nnoremap <silent> <LocalLeader><LocalLeader> :Vista!!<CR>
-	nnoremap <silent> <LocalLeader><LocalLeader>f :Vista finder<CR>
+	nnoremap <Leader>f :Files<cr>
 endif
 
 if dein#tap("winresizer")

@@ -2,14 +2,10 @@
     "diagnostic.errorSign": "✘",
     "diagnostic.warningSign": "",
     "diagnostic.infoSign": "",
-    "languageserver": {
-      "sorbet": {
-        "command": "srb",
-        "args": ["tc", "--typed", "true", "--enable-all-experimental-lsp-features", "--lsp", "--disable-watchman"],
-        "filetypes": ["ruby"],
-        "rootPatterns": ["sorbet/config"],
-        "initializationOptions": {},
-        "settings": {}
-      }
+    "solargraph.commandPath": "/usr/local/bin/solargraph",
+    "solargraph.transport": "external",
+    "solargraph.externalServer": {
+        "host": "localhost",
+        "port": 7658
     }
 }

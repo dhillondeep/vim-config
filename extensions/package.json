@@ -4,8 +4,8 @@
     "coc-cmake": ">=0.0.1",
     "coc-go": ">=0.8.0",
     "coc-json": ">=1.2.6",
+    "coc-solargraph": "1.1.8",
     "coc-vimlsp": ">=0.8.0",
-    "coc-yaml": ">=1.0.4",
-    "coc-yank": ">=1.1.4"
+    "coc-yaml": ">=1.0.4"
   }
 }

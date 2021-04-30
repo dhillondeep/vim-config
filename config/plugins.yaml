@@ -30,7 +30,7 @@
   merged: 0
   depends: fzf
   on_cmd: [ Files, Buffers, History, BLines, Colors, Rg, Rgrep, GFiles ]
-  on_func: [ 'fzf#vim#with_preview', 'fzf#run', 'vista#finder#fzf#Run', 'fzf#vim#grep' ]
+  on_func: [ 'fzf#vim#with_preview', 'fzf#run', 'fzf#vim#grep' ]
   hook_source: source $VIM_PATH/config/plugins/fzf.vim
 
 - repo: antoinemadec/coc-fzf
@@ -124,12 +124,10 @@
   rev: release
   hook_source: source $VIM_PATH/config/plugins/coc.vim
 
+- repo: sebdah/vim-delve
+
 # Other Stuff
 - repo: tpope/vim-fugitive
-
-- repo: tyru/open-browser.vim
-- repo: tyru/open-browser-github.vim
-  depends: open-browser.vim
 
 - repo: mhinz/vim-signify
   hook_add: |

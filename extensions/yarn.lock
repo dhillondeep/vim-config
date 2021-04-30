@@ -40,6 +40,11 @@ coc-json@>=1.2.6:
   resolved "https://registry.yarnpkg.com/coc-json/-/coc-json-1.2.6.tgz#58d3f3763757e2239241b29d3e641fb9e8e65e8f"
   integrity sha512-PAytSZ30TWoEHOfi2V3Y944u5q1WHNVhjsKyNnggm8CcgYAulWJiCzxSsmKBLw+DbRLqygGUdO3cOIbQeJCm5A==
 
+coc-solargraph@1.1.8:
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/coc-solargraph/-/coc-solargraph-1.1.8.tgz#870149d329d75470e844885e0af393fdac8aeeef"
+  integrity sha512-j0/S9ycyP4cdFhTu3FGaY4t0ZSn1K5EFWi6A90nppQYPwrzSGo3tn5XDO44vaWsYhEUlQfQrXVwtFScKCdc1vg==
+
 coc-vimlsp@>=0.8.0:
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/coc-vimlsp/-/coc-vimlsp-0.8.0.tgz#cffa73b272f94323cad874f237f4f8691550c3be"
@@ -51,11 +56,6 @@ coc-yaml@>=1.0.4:
   integrity sha512-ChwFqLSF0C/c/LIhJR6ycOc7JZreFkGeNOol/+oPw+OFvY5Zgz8vjdDzmwXZlKwQMIuZAnDUFZOJaYUyCRJzsw==
   dependencies:
     yaml-language-server "^0.7.2"
-
-coc-yank@>=1.1.4:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/coc-yank/-/coc-yank-1.1.4.tgz#32e908cc72a7253b2d0ba1d5c2340bdd3601a5a1"
-  integrity sha512-8qonhyBfipzni6Fbbdm9hOjUIdLtwPGqnVGxA5DV+Kd4ctvD+FiBRuaWnXWf4QqxC8ATHQyTyoSqrvdXdko4PA==
 
 debug@3.1.0:
   version "3.1.0"
