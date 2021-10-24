@@ -35,6 +35,11 @@ coc-go@>=0.8.0:
     tslib "^2.0.0"
     which "^2.0.2"
 
+coc-jedi@>=0.29.1:
+  version "0.29.6"
+  resolved "https://registry.yarnpkg.com/coc-jedi/-/coc-jedi-0.29.6.tgz#74dec2d07b82f689da87c61fdfecd0f316651d8d"
+  integrity sha512-gSvJpQgeHcCCEWSz0UR3l36PBdNWBgjG4d6QByz4h60et1mPhJjXmHM4VB1Y8XhNA25R/xuUWuFXqpohMGzBWA==
+
 coc-json@>=1.2.6:
   version "1.2.6"
   resolved "https://registry.yarnpkg.com/coc-json/-/coc-json-1.2.6.tgz#58d3f3763757e2239241b29d3e641fb9e8e65e8f"
