@@ -13,7 +13,8 @@ install:
 	@rm -rf "$(XDG_CONFIG_HOME)/coc/extensions"
 	@ln -s ~/.config/nvim/extensions "$(XDG_CONFIG_HOME)/coc/extensions"
 	@cd "extensions" && yarn install
-	@python3 -m pip install neovim
+	@python3 -m pip install --user --upgrade pynvim
+	@vim +UpdateRemotePlugins
 
 update-repo:
 	@git pull --ff --ff-only
