@@ -139,9 +139,12 @@
 - repo: tpope/vim-repeat
 
 - repo: bagrat/vim-buffet
+  depends: vim-devicons
   hook_add: |
     let g:buffet_powerline_separators = 1
     let g:buffet_tab_icon = "\uf00a"
     let g:buffet_left_trunc_icon = "\uf0a8"
     let g:buffet_right_trunc_icon = "\uf0a9"
   hook_source: source $VIM_PATH/config/plugins/vim-buffet.vim
+
+- repo: github/copilot.vim
