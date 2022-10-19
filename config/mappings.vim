@@ -103,9 +103,6 @@ nnoremap <Leader>cN *``cgN
 vnoremap <expr> <Leader>cn "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgn"
 vnoremap <expr> <Leader>cN "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgN"
 
-" Duplicate paragraph
-nnoremap <Leader>cp yap<S-}>p
-
 " }}}
 " Command & History {{{
 " -----------------
@@ -122,6 +119,7 @@ nnoremap g! :<C-u>put=execute('')<Left><Left>
 
 " Switch (window) to the directory of the current opened buffer
 map <Leader>cd :lcd %:p:h<CR>:pwd<CR>
+map <Leader>pwd :pwd<CR>
 
 " Open file under the cursor in a vsplit
 nnoremap gf :vert wincmd f<CR>

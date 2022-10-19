@@ -258,3 +258,6 @@ if &termguicolors
 endif
 
 " }}}
+
+" set buffer's path to current path
+autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif

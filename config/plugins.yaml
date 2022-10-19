@@ -3,12 +3,11 @@
 - repo: wsdjeg/dein-ui.vim
 
 # Colors and Icons
-- repo: ryanoasis/vim-devicons
-
-- repo: kristijanhusak/defx-icons
-  depends: vim-devicons
+- repo: nvim-tree/nvim-web-devicons
 
 - repo: rafi/awesome-vim-colorschemes
+
+- repo: navarasu/onedark.nvim
 
 # Startup
 - repo: mhinz/vim-startify
@@ -18,30 +17,42 @@
 - repo: christoomey/vim-tmux-navigator
   if: "! (has('win32') || has('win64'))"
 
-- repo: Shougo/defx.nvim
-  on_cmd: Defx
-  hook_source: source $VIM_PATH/config/plugins/defx.vim
+- repo: nvim-tree/nvim-tree.lua
+  on_cmd:
+    [
+      NvimTreeToggle,
+      NvimTreeFocus,
+      NvimTreeFindFile,
+      NvimTreeCollapse,
+      NvimTreeFindFileToggle,
+    ]
+  hook_source: luafile $VIM_PATH/config/plugins/nvimTree.lua
+
+- repo: nvim-lua/plenary.nvim
+
+- repo: airblade/vim-rooter
+  hook_add: |
+    let g:rooter_patterns = ['.git', '.svn', 'package.json', '!node_modules']
+
+- repo: "nvim-telescope/telescope-fzf-native.nvim"
+  build: "make"
+
+- repo: nvim-telescope/telescope.nvim
+  depends: [telescope-fzf-native.nvim, fzf]
+  hook_source: luafile $VIM_PATH/config/plugins/telescope.lua
+
+- repo: ibhagwan/fzf-lua
+  depends: fzf
+  hook_source: luafile $VIM_PATH/config/plugins/fzf.lua
 
 - repo: junegunn/fzf
   build: "./install --all"
   merged: 0
 
-- repo: junegunn/fzf.vim
-  merged: 0
-  depends: fzf
-  on_cmd: [ Files, Buffers, History, BLines, Colors, Rg, Rgrep, GFiles ]
-  on_func: [ 'fzf#vim#with_preview', 'fzf#run', 'fzf#vim#grep' ]
-  hook_source: source $VIM_PATH/config/plugins/fzf.vim
-
-- repo: antoinemadec/coc-fzf
-  depends: [coc.nvim, fzf.vim]
-  on_source: fzf.vim
-
 # Register and Movemenets
 - repo: justinmk/vim-sneak
-  on_map: {
-    'nx': [ 'S', 's' ]
-  }
+  on_map:
+    "nx": ["S", "s"]
   hook_add: |
     let g:sneak#label = 1
     let g:sneak#use_ic_scs = 1
@@ -49,25 +60,29 @@
     let g:sneak#prompt = '🔎 '
 
 - repo: unblevable/quick-scope
-  on_map: {
-    'nx': [ 'f', 'F', 't', 'T' ]
-  }
+  on_map:
+    "nx": ["f", "F", "t", "T"]
   hook_add: |
     let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
     highlight QuickScopePrimary guifg='#00C7DF' gui=underline ctermfg=155 cterm=underline
     highlight QuickScopeSecondary guifg='#eF5F70' gui=underline ctermfg=81 cterm=underline
     let g:qs_max_chars=150
 
+- repo: ojroques/vim-oscyank
+  lazy: 1
+  hook_add: |
+    let g:oscyank_term = 'default'
+    let g:oscyank_silent = v:true
+
 - repo: christoomey/vim-system-copy
-  on_map: {
-    'nx': [ 'cp', 'cP', 'cv', 'cV' ],
-  }
+  depends: [vim-oscyank]
+  on_source: [vim-oscyank]
+  on_map:
+    "nx": ["cp", "cP", "cv", "cV"]
+  hook_add: |
+    let g:system_copy_enable_osc52 = 1
 
 # Interface
-- repo: kristijanhusak/defx-git
-  depends: defx.nvim
-  on_source: defx.nvim
-
 - repo: machakann/vim-highlightedyank
   on_event: TextYankPost
   hook_source: let g:highlightedyank_highlight_duration = 300
@@ -83,48 +98,63 @@
   on_event: FileType
   hook_source: luafile $VIM_PATH/config/plugins/colorizer.lua
 
-- repo: dhillondeep/eleline.vim
-  hook_add: |
-    let g:eleline_powerline_fonts = 1
-
+- repo: nvim-lualine/lualine.nvim
+  hook_source: luafile $VIM_PATH/config/plugins/lualine.lua
 
 # Autocompletion
 - repo: preservim/nerdcommenter
-  on_map: [ '<Leader>cc', '<leader>cn', '<leader>c<space>', '<leader>cm', '<leader>ci', '<leader>cs',
-            '<leader>cy', '<leader>c$', '<leader>cA', '<leader>ca', '<leader>cl', '<leader>cb', '<leader>cu' ]
+  on_map:
+    [
+      "<Leader>cc",
+      "<leader>cn",
+      "<leader>c<space>",
+      "<leader>cm",
+      "<leader>ci",
+      "<leader>cs",
+      "<leader>cy",
+      "<leader>c$",
+      "<leader>cA",
+      "<leader>ca",
+      "<leader>cl",
+      "<leader>cb",
+      "<leader>cu",
+    ]
 
-- repo: SirVer/ultisnips
 - repo: honza/vim-snippets
 
 # Language and Files
-- repo: sheerun/vim-polyglot
+- repo: nvim-treesitter/nvim-treesitter
+  hook_post_update: TSUpdate
+  hook_source: luafile $VIM_PATH/config/plugins/treesitter.lua
 
 - repo: tpope/vim-rails
   on_ft: ruby
 
-- repo: fatih/vim-go
-  on_ft: [ go, gomod ]
-  hook_add: |
-    let g:go_def_mapping_enabled = 0
-    let g:go_code_completion_enabled = 0
-    let g:go_fmt_command = "goimports"
-    let g:go_template_autocreate = 0
-    let g:go_decls_mode = "fzf"
-    let g:go_echo_command_info = 0
-    let g:go_doc_keywordprg_enabled = 0
-    let g:go_mod_fmt_autosave = 0
-    let g:go_highlight_array_whitespace_error = 0
-    let g:go_highlight_chan_whitespace_error = 0
-    let g:go_highlight_space_tab_error = 0
-    let g:go_highlight_trailing_whitespace_error = 0
+## LSP Support
+- repo: neovim/nvim-lspconfig
+- repo: "williamboman/mason.nvim"
+- repo: "williamboman/mason-lspconfig.nvim"
 
-# LSP
-- repo: neoclide/coc.nvim
-  merged: 0
-  rev: release
-  hook_source: source $VIM_PATH/config/plugins/coc.vim
+## Autocompletion
+- repo: 'hrsh7th/nvim-cmp'
+- repo: 'hrsh7th/cmp-buffer'
+- repo: 'hrsh7th/cmp-path'
+- repo: 'saadparwaiz1/cmp_luasnip'
+- repo: 'hrsh7th/cmp-nvim-lsp'
+- repo: 'hrsh7th/cmp-nvim-lua'
 
-- repo: sebdah/vim-delve
+##  Snippets
+- repo: 'L3MON4D3/LuaSnip'
+- repo: 'rafamadriz/friendly-snippets'
+
+## LSP Config
+- repo: 'VonHeikemen/lsp-zero.nvim'
+  hook_source: luafile $VIM_PATH/config/plugins/lsp-zero.lua
+
+## LSP UI
+- repo: glepnir/lspsaga.nvim
+  rev: 'main'
+  hook_source: luafile $VIM_PATH/config/plugins/lspsaga.lua
 
 # Other Stuff
 - repo: tpope/vim-fugitive
@@ -138,13 +168,6 @@
 
 - repo: tpope/vim-repeat
 
-- repo: bagrat/vim-buffet
-  depends: vim-devicons
-  hook_add: |
-    let g:buffet_powerline_separators = 1
-    let g:buffet_tab_icon = "\uf00a"
-    let g:buffet_left_trunc_icon = "\uf0a8"
-    let g:buffet_right_trunc_icon = "\uf0a9"
-  hook_source: source $VIM_PATH/config/plugins/vim-buffet.vim
-
-- repo: github/copilot.vim
+# Search Replace
+- repo: windwp/nvim-spectre
+  hook_source: source $VIM_PATH/config/plugins/spectre.vim
