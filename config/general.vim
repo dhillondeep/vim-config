@@ -246,18 +246,3 @@ endif
 if exists('+previewpopup')
 	set previewpopup=height:10,width:60
 endif
-
-" Pseudo-transparency for completion menu and floating windows
-if &termguicolors
-	if exists('&pumblend')
-		set pumblend=20
-	endif
-	if exists('&winblend')
-		set winblend=20
-	endif
-endif
-
-" }}}
-
-" set buffer's path to current path
-autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
