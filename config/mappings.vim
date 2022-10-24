@@ -31,10 +31,6 @@ nnoremap <CR> za
 " Focus the current fold by closing all others
 nnoremap <S-Return> zMzvzt
 
-" Easier line-wise movement
-nnoremap gh g^
-nnoremap gl g$
-
 " Location/quickfix list movement
 nmap ]l :lnext<CR>
 nmap [l :lprev<CR>
@@ -122,7 +118,7 @@ map <Leader>cd :lcd %:p:h<CR>:pwd<CR>
 map <Leader>pwd :pwd<CR>
 
 " Open file under the cursor in a vsplit
-nnoremap gf :vert wincmd f<CR>
+nnoremap of :vert wincmd f<CR>
 
 " Fast saving from all modes
 nnoremap <Leader>w :write<CR>
