@@ -40,8 +40,6 @@ telescope.setup({
     selection_caret = ' → ',
     entry_prefix = '   ',
     path_display = { 'truncate' },
-    results_title = false,
-    prompt_title =false,
     preview = {
       treesitter = {
         enable = {
@@ -73,17 +71,14 @@ telescope.setup({
 
 telescope.load_extension('fzf')
 
-local use_layout = function(picker, layout)
-  return function() picker(themes[layout]) end
-end
 local set_keymap = function(lhs, rhs)
   map('n', lhs, rhs, { noremap = true })
 end
 
-set_keymap('<Leader>b', telescope_builtin.buffers, {})
-set_keymap('<Leader>fo', telescope_builtin.oldfiles, {})
+set_keymap('<Leader>b', telescope_builtin.buffers)
+set_keymap('<Leader>fo', telescope_builtin.oldfiles)
 
-set_keymap('<Leader>gb', telescope_builtin.git_branches, {})
-set_keymap('<Leader>gs', telescope_builtin.git_status, {})
-set_keymap('<Leader>gc', telescope_builtin.git_commits, {})
-set_keymap('<Leader>gbc', telescope_builtin.git_bcommits, {})
+set_keymap('<Leader>gb', telescope_builtin.git_branches)
+set_keymap('<Leader>gs', telescope_builtin.git_status)
+set_keymap('<Leader>gc', telescope_builtin.git_commits)
+set_keymap('<Leader>gbc', telescope_builtin.git_bcommits)

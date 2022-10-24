@@ -126,14 +126,14 @@ xnoremap <Leader>w <Esc>:write<CR>
 
 " Other saving and quititng
 
-" :W sudo saves the file 
+" :W sudo saves the file
 " (useful for handling the permission-denied error)
 command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 
-map <leader>W :W<cr> 
+map <leader>W :W<cr>
 map <Leader>x :x<CR>
 map <Leader>q :q<CR>
-map <leader>Q :qa<CR> 
+map <leader>Q :qa<CR>
 
 " }}}
 " Editor UI {{{

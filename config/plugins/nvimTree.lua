@@ -42,17 +42,6 @@ require("nvim-tree").setup {
             { key = "?", action = "preview" },
           },
         },
-        float = {
-          enable = false,
-          open_win_config = {
-            relative = "editor",
-            border = "rounded",
-            width = NvimTreeWidth(),
-            height = NvimTreeHeight(),
-            row = NvimTreeRow(),
-            col = NvimTreeCol(),
-          },
-      },
 	},
 	filters = {
 		dotfiles = true, -- hide dot files
