@@ -9,10 +9,6 @@ default: install
 install:
 	@mkdir -vp "$(XDG_CACHE_HOME)/vim/"{backup,session,swap,tags,undo}; \
 	$(vim) -V1 -es -i NONE -N -u config/init.vim -c "try | call dein#update() | finally | echomsg '' | qall! | endtry"
-	@mkdir -vp "$(XDG_CONFIG_HOME)/coc"
-	@rm -rf "$(XDG_CONFIG_HOME)/coc/extensions"
-	@ln -s ~/.config/nvim/extensions "$(XDG_CONFIG_HOME)/coc/extensions"
-	@cd "extensions" && yarn install
 	@python3 -m pip install --user --upgrade pynvim
 	@vim +UpdateRemotePlugins
 
@@ -21,9 +17,6 @@ update-repo:
 
 update-plugins:
 	$(vim) -V1 -es -i NONE -N -u config/init.vim -c "try | call dein#clear_state() | call dein#update() | finally | qall! | endtry"
-
-update-extensions:
-	@cd "extensions" && yarn install
 
 update: update-repo update-plugins update-extensions
 
